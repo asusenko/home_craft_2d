@@ -45,3 +45,10 @@ var monetki = 0;
     ctx.fillText("Monetki: " + monetki, 1000, 10);
   };
   drawCoins();
+
+  $(  "#canvas1" ).on( "mousemove", function( event ) {
+    var parentOffset = $(this).parent().offset();
+    var relX = event.pageX - parentOffset.left;
+    var relY = event.pageY - parentOffset.top;
+    $( "#log" ).text( "pageX: " + relX + ", pageY: " + relY );
+  });
