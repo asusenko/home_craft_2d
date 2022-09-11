@@ -10,10 +10,16 @@ var rows = 12;
 var columns = 20;
 var monetki = 200;  
 
+var imageArray = new Array(10);
+
 grassImage = new Image();
 grassImage.src = 'img/1.png';
-  
+imageArray[1] = grassImage;
 
+
+plitkaImage = new Image();
+plitkaImage.src = 'img/2.png';
+imageArray[2] = plitkaImage;
 
 var blocks = new Array(rows);		// В таблице rows строк
 for(var i = 0; i < rows; i++)
@@ -28,10 +34,10 @@ var refreshMap = function () {
             ctx.rect(x, y, blockSize, blockSize);
             ctx.stroke();
 
-              if (blocks[j][i] == 1) {
+              if (blocks[j][i] > 0) {
                   //ctx.fillStyle = "green";
                   //ctx.fillRect(x, y, blockSize, blockSize);
-                  ctx.drawImage(grassImage, x, y);
+                  ctx.drawImage(imageArray[blocks[j][i]], x, y);
               } else {
                 ctx.fillStyle = "white";
                   ctx.fillRect(x, y, blockSize, blockSize);
@@ -97,7 +103,7 @@ var drawNameOfTheGame = function () {
     
     var blockX = Math.floor(relX / blockSize);
     var blockY = Math.floor(relY / blockSize);
-    blocks[blockY][blockX] = 0;
+    blocks[blockY][blockX] = 2;
     refreshMap();
     drawNameOfTheGame();
     drawCoins();
