@@ -8,23 +8,33 @@ ctx.strokeStyle = "lightgrey";
 var blockSize = 50;
 var rows = 12;
 var columns = 20;
-var blocks = [];
+var monetki = 200;  
 
-//blocks.push('234sdfsdf');
-//alert (blocks[0]);
+var blocks = new Array(rows);		// В таблице rows строк
+for(var i = 0; i < rows; i++)
+    blocks[i] = new Array(columns);		// В каждой строке columns столбцов
 
-for (var j = 0; j < rows; j++) {
-    var y = j * blockSize;
-    for (var i = 0; i < columns; i++){
-        var x = i * blockSize;
-        ctx.beginPath();
-        ctx.rect(x, y, blockSize, blockSize);
-        ctx.stroke();   
+var refreshMap = function () {
+    for (var j = 0; j < rows; j++) {
+        var y = j * blockSize;
+        for (var i = 0; i < columns; i++){
+            var x = i * blockSize;
+            ctx.beginPath();
+            ctx.rect(x, y, blockSize, blockSize);
+            ctx.stroke();
+
+              if (blocks[j][i] == 1) {
+                  ctx.fillStyle = "green";
+                  ctx.fillRect(x, y, blockSize, blockSize);
+              } else {
+                ctx.fillStyle = "white";
+                  ctx.fillRect(x, y, blockSize, blockSize);
+              }
+               
+        }
     }
-}
-
-
-
+};
+refreshMap();
 
 var drawNameOfTheGame = function () {
     ctx.font = "25px Comic Sans MS";
@@ -36,7 +46,7 @@ var drawNameOfTheGame = function () {
 
   drawNameOfTheGame();
 
-var monetki = 0;  
+
   var drawCoins = function () {
     ctx.font = "25px Arial";
     ctx.fillStyle = "orange";
@@ -51,4 +61,39 @@ var monetki = 0;
     var relX = event.pageX - parentOffset.left;
     var relY = event.pageY - parentOffset.top;
     $( "#log" ).text( "pageX: " + relX + ", pageY: " + relY );
+  });   
+  
+  $( "#canvas1" ).click(function(event) {
+    var parentOffset = $(this).parent().offset();
+    var relX = event.pageX - parentOffset.left;
+    var relY = event.pageY - parentOffset.top;
+    
+    var blockX = Math.floor(relX / blockSize);
+    var blockY = Math.floor(relY / blockSize);
+    
+    if (blocks[blockY][blockX] > 0) {
+        blocks[blockY][blockX] = 0;
+    } else {
+        blocks[blockY][blockX] = 1;
+    }
+    
+    
+    refreshMap();
+    drawNameOfTheGame();
+    drawCoins();
+    //alert( "X-->" + blockX + "Y-->" + blockY) ;
+  });
+
+  $( "#canvas1" ).dblclick(function(event) {
+    var parentOffset = $(this).parent().offset();
+    var relX = event.pageX - parentOffset.left;
+    var relY = event.pageY - parentOffset.top;
+    
+    var blockX = Math.floor(relX / blockSize);
+    var blockY = Math.floor(relY / blockSize);
+    blocks[blockY][blockX] = 0;
+    refreshMap();
+    drawNameOfTheGame();
+    drawCoins();
+    //alert( "X-->" + blockX + "Y-->" + blockY) ;
   });
