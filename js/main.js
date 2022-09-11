@@ -3,12 +3,16 @@ var ctx = canvas.getContext("2d");
 
 ctx.strokeStyle = "lightgrey";
 
-for (var j = 0; j < 12; j++) {
-    var y = j * 50;
-    for (var i = 0; i < 20; i++){
-        var x = i * 50;
+var blockSize = 50;
+var rows = 12;
+var columns = 20;
+
+for (var j = 0; j < rows; j++) {
+    var y = j * blockSize;
+    for (var i = 0; i < columns; i++){
+        var x = i * blockSize;
         ctx.beginPath();
-        ctx.rect(x, y, 50, 50);
+        ctx.rect(x, y, blockSize, blockSize);
         ctx.stroke();   
     }
 }
