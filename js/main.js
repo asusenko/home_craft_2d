@@ -10,6 +10,11 @@ var rows = 12;
 var columns = 20;
 var monetki = 200;  
 
+grassImage = new Image();
+grassImage.src = 'img/1.png';
+  
+
+
 var blocks = new Array(rows);		// В таблице rows строк
 for(var i = 0; i < rows; i++)
     blocks[i] = new Array(columns);		// В каждой строке columns столбцов
@@ -24,8 +29,9 @@ var refreshMap = function () {
             ctx.stroke();
 
               if (blocks[j][i] == 1) {
-                  ctx.fillStyle = "green";
-                  ctx.fillRect(x, y, blockSize, blockSize);
+                  //ctx.fillStyle = "green";
+                  //ctx.fillRect(x, y, blockSize, blockSize);
+                  ctx.drawImage(grassImage, x, y);
               } else {
                 ctx.fillStyle = "white";
                   ctx.fillRect(x, y, blockSize, blockSize);
