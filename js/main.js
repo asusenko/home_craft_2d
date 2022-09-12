@@ -5,13 +5,11 @@ ctx.strokeStyle = "lightgrey";
 
 var imageArray = new Array(10);
 
-grassImage = new Image();
-grassImage.src = 'img/1.png';
-imageArray[1] = grassImage;
-
-plitkaImage = new Image();
-plitkaImage.src = 'img/2.png';
-imageArray[2] = plitkaImage;
+for (var i = 1; i < 5; i++) {
+  grassImage = new Image();
+  grassImage.src = 'img/'+ i +'.png';
+  imageArray[i] = grassImage;
+}
 
 var blocks = new Array(rows);		// В таблице rows строк
 for(var i = 0; i < rows; i++)
