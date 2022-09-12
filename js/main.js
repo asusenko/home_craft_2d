@@ -1,21 +1,13 @@
-var gameName = "Home Craft 2D";
-
 var canvas = document.getElementById("canvas1");
 var ctx = canvas.getContext("2d");
 
 ctx.strokeStyle = "lightgrey";
-
-var blockSize = 50;
-var rows = 12;
-var columns = 20;
-var monetki = 200;  
 
 var imageArray = new Array(10);
 
 grassImage = new Image();
 grassImage.src = 'img/1.png';
 imageArray[1] = grassImage;
-
 
 plitkaImage = new Image();
 plitkaImage.src = 'img/2.png';
@@ -33,16 +25,12 @@ var refreshMap = function () {
             ctx.beginPath();
             ctx.rect(x, y, blockSize, blockSize);
             ctx.stroke();
-
               if (blocks[j][i] > 0) {
-                  //ctx.fillStyle = "green";
-                  //ctx.fillRect(x, y, blockSize, blockSize);
                   ctx.drawImage(imageArray[blocks[j][i]], x, y);
               } else {
                 ctx.fillStyle = "white";
                   ctx.fillRect(x, y, blockSize, blockSize);
-              }
-               
+              }    
         }
     }
 };
@@ -55,9 +43,7 @@ var drawNameOfTheGame = function () {
     ctx.textBaseline = "top";
     ctx.fillText(gameName, 10, 10)
   };
-
   drawNameOfTheGame();
-
 
   var drawCoins = function () {
     ctx.font = "25px Arial";
@@ -78,8 +64,7 @@ var drawNameOfTheGame = function () {
   $( "#canvas1" ).click(function(event) {
     var parentOffset = $(this).parent().offset();
     var relX = event.pageX - parentOffset.left;
-    var relY = event.pageY - parentOffset.top;
-    
+    var relY = event.pageY - parentOffset.top; 
     var blockX = Math.floor(relX / blockSize);
     var blockY = Math.floor(relY / blockSize);
     
@@ -88,8 +73,6 @@ var drawNameOfTheGame = function () {
     } else {
         blocks[blockY][blockX] = 1;
     }
-    
-    
     refreshMap();
     drawNameOfTheGame();
     drawCoins();
@@ -100,7 +83,6 @@ var drawNameOfTheGame = function () {
     var parentOffset = $(this).parent().offset();
     var relX = event.pageX - parentOffset.left;
     var relY = event.pageY - parentOffset.top;
-    
     var blockX = Math.floor(relX / blockSize);
     var blockY = Math.floor(relY / blockSize);
     blocks[blockY][blockX] = 2;
