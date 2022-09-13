@@ -4,4 +4,5 @@ var monetki = 100;
 var blockSize = 50;
 var rows = 12;
 var columns = 20;
+var currentTexture = 1;
 

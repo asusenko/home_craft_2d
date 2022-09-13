@@ -69,7 +69,7 @@ var drawNameOfTheGame = function () {
     if (blocks[blockY][blockX] > 0) {
         blocks[blockY][blockX] = 0;
     } else {
-        blocks[blockY][blockX] = 1;
+        blocks[blockY][blockX] = currentTexture;
     }
     refreshMap();
     drawNameOfTheGame();
@@ -87,5 +87,25 @@ var drawNameOfTheGame = function () {
     refreshMap();
     drawNameOfTheGame();
     drawCoins();
+   // alert( "X-->" + blockX + "Y-->" + blockY) ;
+  });
+
+  $( "#canvas2" ).click(function(event) {
+    var parentOffset = $(this).parent().offset();
+    var relX = event.pageX - parentOffset.left;
+    var relY = event.pageY - parentOffset.top; 
+    var blockX = Math.floor(relX / blockSize);
+    var blockY = Math.floor(relY / blockSize);
+    if ((blockX > 0) && (blockX < 5)){
+      currentTexture = blockX;
+    }
+    // if (blocks[blockY][blockX] > 0) {
+    //     blocks[blockY][blockX] = 0;
+    // } else {
+    //     blocks[blockY][blockX] = currentTexture;
+    // }
+    // refreshMap();
+    // drawNameOfTheGame();
+    // drawCoins();
     //alert( "X-->" + blockX + "Y-->" + blockY) ;
   });
